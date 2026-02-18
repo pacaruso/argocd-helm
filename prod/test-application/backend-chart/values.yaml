@@ -1,0 +1,12 @@
+replicaCount: 1
+
+image:
+  repository: hashicorp/http-echo
+  tag: "0.2.3"
+  pullPolicy: IfNotPresent
+
+service:
+  port: 5678
+
+config:
+  message: "Hello from OpenShift Backend"

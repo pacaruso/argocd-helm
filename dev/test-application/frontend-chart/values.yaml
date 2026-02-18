@@ -1,0 +1,12 @@
+replicaCount: 1
+
+image:
+  repository: nginxinc/nginx-unprivileged
+  tag: "1.25-alpine"
+  pullPolicy: IfNotPresent
+
+service:
+  port: 8080
+
+config:
+  message: "Hello from OpenShift Frontend"
