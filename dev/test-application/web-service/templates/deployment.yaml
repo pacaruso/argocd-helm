@@ -19,7 +19,7 @@ spec:
           claimName: data1
       - name: data2
         persistentVolumeClaim:
-        claimName: data2
+          claimName: data2
       containers:
         - name: container
           volumeMounts:
