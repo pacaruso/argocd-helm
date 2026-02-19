@@ -96,14 +96,14 @@ spec:
           ports:
             - containerPort: 80
           volumeMounts:
-            - name: nginx-storage
+            - name: html-storage
               mountPath: /usr/share/nginx/html
             - name: data-storage
               mountPath: /data
       volumes:
         - name: html-storage
           persistentVolumeClaim:
-            claimName: pvc-html
+            claimName: pvc1-html
         - name: data-storage
           persistentVolumeClaim:
-            claimName: pvc-data
+            claimName: pvc1-data
