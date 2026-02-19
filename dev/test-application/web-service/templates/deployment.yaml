@@ -17,16 +17,11 @@ spec:
       - name: data1
         persistentVolumeClaim:
           claimName: data1
-      - name: data2
-        persistentVolumeClaim:
-        claimName: data2
       containers:
         - name: container
           volumeMounts:
           - name: data1
             mountPath: /data1
-          - name: data2
-            mountPath: /data2
           image: 'image-registry.openshift-image-registry.svc:5000/openshift/httpd:latest'
           ports:
             - containerPort: 8080
