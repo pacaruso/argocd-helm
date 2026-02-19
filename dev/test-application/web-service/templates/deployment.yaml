@@ -3,6 +3,7 @@ apiVersion: apps/v1
 metadata:
   annotations:
     myannotation: test
+    rollme: test
   labels:
     app: test
     env: dev1
