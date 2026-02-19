@@ -1,6 +1,8 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
+  annotations:
+    myannotation: test
   labels:
     app: test
     env: dev1
