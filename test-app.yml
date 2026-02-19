@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: test-appset
+  name: test-appset1
   namespace: openshift-gitops
 spec:
   goTemplate: true
@@ -39,7 +39,7 @@ spec:
         syncOptions:
           - ApplyOutOfSyncOnly=true
           - PruneLast=true
-          - Replace=true
+#          - Replace=true
           - CreateNamespace=true
         automated:
           prune: true
