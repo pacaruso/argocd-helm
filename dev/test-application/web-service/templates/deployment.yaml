@@ -24,7 +24,7 @@ spec:
         - name: container
           volumeMounts:
           - name: data1
-            mountPath: /data2
+            mountPath: /data1
           - name: data2
             mountPath: /data2
           image: 'image-registry.openshift-image-registry.svc:5000/openshift/httpd:latest'
