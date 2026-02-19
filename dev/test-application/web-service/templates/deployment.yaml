@@ -1,8 +1,7 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: test-application
-  namespace: demo-microservices
+  name: web-service
 spec:
   replicas: 1
   selector:

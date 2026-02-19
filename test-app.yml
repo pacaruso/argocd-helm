@@ -14,8 +14,12 @@ spec:
           - path: dev/test-application/*
   template:
     metadata:
-      # MODIFICA QUI: Aggiungi il punto davanti a path
-      name: '{{ .path.basename }}' 
+      name: "{{ index .path.segments 1 }}-{{ .path.basename }}"
+      namespace: 'openshift-gitops'
+    annotations:
+      argocd.argoproj.io/manifest-generate-paths: .
+      finalizers:
+        - resources-finalizer.argocd.argoproj.io
     spec:
       project: default
       source:
@@ -23,14 +27,28 @@ spec:
         targetRevision: main
         path: "{{ .path.path }}"
         helm:
+          valueFiles:
+          - Values.yaml
+          - values.yaml
+          ignoreMissingValueFiles: true
           releaseName: "{{ .path.basename }}"
       destination:
         server: https://kubernetes.default.svc
-        namespace: demo-microservices
+        namespace: '{{ index .path.segments 1 }}'
       syncPolicy:
+        syncOptions:
+          - ApplyOutOfSyncOnly=true
+          - PruneLast=true
+          - Replace=true
+          - CreateNamespace=true
         automated:
           prune: true
           selfHeal: true
-        syncOptions:
-          - CreateNamespace=true
+          allowEmpty: true
+        retry:
+          limit: 2
+          backoff:
+            duration: '30s'
+            maxDuration: '1m30s'
+            factor: 2
           
