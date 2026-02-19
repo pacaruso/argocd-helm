@@ -53,7 +53,7 @@ spec:
         persistentVolumeClaim:
           claimName: pvc-html
       # Definizione esplicita che punta al secondo PVC
-      - name: storage-dati
+      - name: storage-data
         persistentVolumeClaim:
           claimName: pvc-data
       {{- with .Values.nodeSelector }}
