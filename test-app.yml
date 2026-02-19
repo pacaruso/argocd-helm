@@ -39,6 +39,7 @@ spec:
         syncOptions:
           - ApplyOutOfSyncOnly=true
           - PruneLast=true
+          - Replace=true
           - CreateNamespace=true
         automated:
           prune: true
