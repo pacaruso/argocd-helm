@@ -92,7 +92,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: nginx:1.25
+          image: registry.redhat.io/ubi9/nginx-120
           ports:
             - containerPort: 80
           volumeMounts:
