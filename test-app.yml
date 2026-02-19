@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: test-appset
+  namespace: openshift-gitops
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    - git:
+        repoURL: https://github.com/pacaruso/argocd-helm.git
+        revision: main
+        directories:
+          - path: dev/test-application/*
+  template:
+    metadata:
+      # MODIFICA QUI: Aggiungi il punto davanti a path
+      name: '{{ .path.basename }}' 
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/pacaruso/argocd-helm.git
+        targetRevision: main
+        path: "{{ .path.path }}"
+        helm:
+          releaseName: "{{ .path.basename }}"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: demo-microservices
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
