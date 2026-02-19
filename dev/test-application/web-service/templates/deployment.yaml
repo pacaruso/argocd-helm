@@ -3,7 +3,7 @@ apiVersion: apps/v1
 metadata:
   labels:
     app: test
-    env: dev
+    env: dev1
   name: web-service
 spec:
   replicas: 1
